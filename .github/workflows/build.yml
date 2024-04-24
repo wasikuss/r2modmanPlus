@@ -59,3 +59,61 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: core.setFailed('It seems the build process failed silently. See previous step for more info.')
+
+      - if: matrix.platform == 'linux'
+        name: 'Upload Artifact - AppImage'
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2modman.AppImage
+          path: dist/electron/Packaged/r2modman-*.AppImage
+
+      - if: matrix.platform == 'linux'
+        name: 'Upload Artifact - tar.gz'
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2modman.tar.gz
+          path: dist/electron/Packaged/r2modman-*.tar.gz
+
+      - if: matrix.platform == 'linux'
+        name: 'Upload Artifact - deb'
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2modman.deb
+          path: dist/electron/Packaged/r2modman-*.deb
+
+      - if: matrix.platform == 'linux'
+        name: 'Upload Artifact - rpm'
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2modman.rpm
+          path: dist/electron/Packaged/r2modman-*.rpm
+
+      - if: matrix.platform == 'linux'
+        name: 'Upload Artifact - pacman'
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2modman.pacman
+          path: dist/electron/Packaged/r2modman-*.pacman
+
+      - if: matrix.platform == 'osx'
+        name: 'Upload Artifact - dmg'
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2modman.dmg
+          path: dist/electron/Packaged/r2modman-*.dmg
+
+      - if: matrix.platform == 'win'
+        name: 'Upload Artifact - exe'
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2modman.exe
+          path: |
+            dist/electron/Packaged/r2modman *.exe
+            !dist/electron/Packaged/r2modman Setup*.exe
+
+      - if: matrix.platform == 'win'
+        name: 'Upload Artifact - setup'
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2modman Setup.exe
+          path: dist/electron/Packaged/r2modman Setup*.exe
